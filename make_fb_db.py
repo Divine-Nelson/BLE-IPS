@@ -1,13 +1,12 @@
+# make_fp_db.py
 import os
 import csv
 import pandas as pd
 from collections import defaultdict
 
-# Paths to RSSI data
+# Path to raw RSSI data
 RAW_PATH = "Ref_files"
-MEDIAN_PATH = "filtered_median"
-KALMAN_PATH = "filtered_kalman"
-METADATA_FILE = r"CSV\New_RF.csv"
+METADATA_FILE = r"CSV\New_RF1.csv"
 
 # Load metadata
 metadata = pd.read_csv(METADATA_FILE)
@@ -22,18 +21,9 @@ def build_fingerprint_db(rssi_dir, output_file):
         y = row['Y']
         file_name = row['File']
 
-        # Construct path to file depending on directory
-        if rssi_dir == RAW_PATH:
-            full_path = os.path.join(rssi_dir, f"{file_name}.txt")
-            delimiter = '\t'
-        elif rssi_dir == MEDIAN_PATH:
-            full_path = os.path.join(rssi_dir, f"{file_name}_medianfilter.txt")
-            delimiter = ','  # median-filtered uses commas
-        elif rssi_dir == KALMAN_PATH:
-            full_path = os.path.join(rssi_dir, f"{file_name}_filtered.txt")
-            delimiter = ','  # kalman-filtered uses commas
-        else:
-            continue
+        # Only RAW data is used
+        full_path = os.path.join(rssi_dir, f"{file_name}.txt")
+        delimiter = '\t'
 
         if not os.path.isfile(full_path):
             print(f"Missing file: {full_path}, skipping...")
@@ -45,11 +35,7 @@ def build_fingerprint_db(rssi_dir, output_file):
             reader = csv.DictReader(f, delimiter=delimiter)
             for line in reader:
                 mac = line.get('Device Address')
-                rssi = None
-                if 'Filtered_RSSI' in line:
-                    rssi = line.get('Filtered_RSSI')
-                elif 'RSSI' in line:
-                    rssi = line.get('RSSI')
+                rssi = line.get('RSSI')
 
                 if mac and rssi:
                     try:
@@ -61,7 +47,7 @@ def build_fingerprint_db(rssi_dir, output_file):
             print(f"No valid RSSI data in {full_path}")
             continue
 
-        averaged_rssi = {mac: sum(vals)/len(vals) for mac, vals in mac_rssi.items()}
+        averaged_rssi = {mac: sum(vals) / len(vals) for mac, vals in mac_rssi.items()}
         all_macs.update(averaged_rssi.keys())
         averaged_rssi.update({'RP_ID': rp_id, 'X': x, 'Y': y})
         fingerprint_rows.append(averaged_rssi)
@@ -77,9 +63,6 @@ def build_fingerprint_db(rssi_dir, output_file):
 
     return output_file
 
-# Run for all three types
+# Generate fingerprint database using only raw data
 raw_fp = build_fingerprint_db(RAW_PATH, "fingerprints_raw.csv")
-median_fp = build_fingerprint_db(MEDIAN_PATH, "fingerprints_median.csv")
-kalman_fp = build_fingerprint_db(KALMAN_PATH, "fingerprints_kalman.csv")
-
-print(raw_fp, median_fp, kalman_fp)
+print(f"Fingerprint database created: {raw_fp}")

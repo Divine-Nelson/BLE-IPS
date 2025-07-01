@@ -9,55 +9,57 @@ class KalmanFilter:
     def __init__(self):
         pass  # We'll dynamically set Q and R in apply_kalman
 
-    def apply_kalman(self, values, visualize=False):
+    def apply_kalman(self, values, Q=None, R=None, visualize=False):
         if not values:
+            return [] 
+
+        values = np.array(values)
+        values = values[~np.isnan(values)]
+
+        if len(values) == 0:
             return []
+        
+        signar_var = np.var(values) if len(values) > 1 else 1.0
 
-        # Estimate signal variance
-        signal_var = np.var(values) if len(values) > 1 else 1.0
-        Q = 0.01 * signal_var  # Process noise
-        R = signal_var         # Measurement noise
+        Q = 0.1 
+        R = 10000
 
-        # Use mean of first few readings for better initialization
-        init_values = values[:3] if len(values) >= 3 else values
+        # Initialization
+        init_values = values[:5] if len(values) >= 5 else values
         x = np.mean(init_values)
-        P = np.var(init_values) if np.var(init_values) > 0 else 1.0
+        P = np.var(init_values) if len(init_values) > 1 else 1.0
 
         A = H = 1.0
-
         result = []
 
         for z in values:
-            # Prediction
             x_pred = A * x
             P_pred = A * P * A + Q
 
-            # Kalman Gain
             K = P_pred * H / (H * P_pred * H + R)
 
-            # Update
             x = x_pred + K * (z - H * x_pred)
             P = (1 - K * H) * P_pred
 
             result.append(x)
 
-        # Optional visualization for debugging
         if visualize:
             plt.figure(figsize=(8, 3))
-            plt.plot(values, label="Raw RSSI", alpha=0.6)
+            plt.plot(values, label="Raw RSSI", alpha=0.5)
             plt.plot(result, label="Kalman Filtered", linewidth=2)
-            plt.title("Kalman Filter Performance")
+            plt.title("Kalman Filter Output")
             plt.xlabel("Sample Index")
             plt.ylabel("RSSI")
-            plt.legend()
             plt.grid(True)
+            plt.legend()
+            plt.tight_layout()
             plt.show()
 
         return result
 
     def read_and_filter_txt(self):
-        txt_files = glob.glob("R_files/*.txt")
-        output_dir = "filtered_kalman"
+        txt_files = glob.glob("Test_files_Noise/*.txt")
+        output_dir = "filtered_kalman_test"
         os.makedirs(output_dir, exist_ok=True)
 
         for file in txt_files:
@@ -86,7 +88,9 @@ class KalmanFilter:
                     except:
                         continue
 
-            base = os.path.basename(file).replace(".txt", "_filtered.txt")
+            base = os.path.basename(file).replace(".txt", "")
+            base = base.replace("_noise", "")
+            base += "_filtered.txt"
             out_path = os.path.join(output_dir, base)
 
             with open(out_path, 'w', newline='') as out:

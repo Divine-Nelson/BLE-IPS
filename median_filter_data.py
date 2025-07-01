@@ -22,7 +22,7 @@ class MedianFilter:
         return filtered
 
     def read_and_filter_txt(self):
-        txt_files = glob.glob("Test_files/*.txt")
+        txt_files = glob.glob("Test_files_Noise/*.txt")
         output_dir = "filtered_median_test"
         os.makedirs(output_dir, exist_ok=True)
 
@@ -54,7 +54,9 @@ class MedianFilter:
                     except:
                         continue
             
-            base = os.path.basename(file).replace(".txt", "_medianfilter.txt")
+            base = os.path.basename(file).replace(".txt", "")
+            base = base.replace("_noise", "")
+            base += "_medianfilter.txt"
             out_path = os.path.join(output_dir, base)
 
             with open(out_path, 'w', newline='') as out:
