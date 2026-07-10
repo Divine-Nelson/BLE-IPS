@@ -1,65 +1,14 @@
-# BLE-Based Indoor Positioning Framework using KNN and Signal Filtering
+# BLE-Based Indoor Positioning System for Healthcare
+A machine learning-based indoor positioning framework that improves localization accuracy in GPS-denied healthcare environments using Bluetooth Low Energy (BLE), signal processing, and fingerprinting techniques.
 
-This repository contains the full code and data used for the thesis **"BLE-Based Efficient Indoor Positioning Framework for Healthcare"**. The project explores indoor localization using Bluetooth Low Energy (BLE) RSSI fingerprinting and K-Nearest Neighbors (KNN) algorithms, incorporating signal filtering techniques (raw, median, and Kalman) to improve accuracy.
+# Overview
+Indoor positioning remains one of the biggest challenges in healthcare environments where GPS signals are unavailable or unreliable. Hospitals, rehabilitation centres, and elderly care facilities often require accurate indoor localization to improve patient safety, track medical equipment, and optimize staff workflows.
 
-## 📘 Table of Contents
+This project investigates whether Bluetooth Low Energy (BLE) fingerprinting combined with machine learning and signal processing can provide an accurate, scalable, and cost-effective indoor positioning solution.
 
-- [Overview](#overview)
-- [Requirements](#requirements)
-- [How to Run](#how-to-run)
-- [Key Features](#key-features)
-- [Contact](#contact)
+Developed as part of a Bachelor's thesis in Computer Engineering, the system evaluates multiple signal preprocessing techniques and compares their impact on localization accuracy using the K-Nearest Neighbours (KNN) algorithm.
 
-## 🔍 Overview
-
-Indoor positioning is essential in environments such as hospitals and elderly care homes, where GPS is unreliable. This project leverages BLE beacons, RSSI fingerprinting, and machine learning to estimate positions accurately indoors.
-
-Key components:
-- RSSI data collection and fingerprinting
-- Signal filtering (raw, median, Kalman)
-- KNN-based localization and performance evaluation
-
-
-## 📦 Requirements
-
-- Python 3.8+
-- pandas  
-- numpy  
-- matplotlib  
-- opencv-python  
-- glob  
-- os  
-- csv  
-- collections
-- bleak
-- RPLCD
-- subprocess  
-
-Install dependencies using:
-
-pip install -r requirements.txt
-
-## ▶️ How to Run
-Clone the repository:
-
-git clone https://github.com/zahra-mos/ble-indoor-positioning.git
-cd ble-indoor-positioning
-Run the scripts in the following order:
-
-
-python add_noise.py
-python kalman_filter.py
-python median_filter.py
-python KNN_Algorithms.py
-Outputs include predicted positions, visualization images, and localization error metrics in knn_error_results.csv.
-
-## ✨ Key Features
-Compare raw, median-filtered, and Kalman-filtered RSSI
-Custom KNN-based localization
-Visualization of predictions on a floorplan
-Mean and standard deviation of localization errors
-Simulated noise injection for robustness testing
-
+# The Problem
 ## 📫 Contact
 Author: Zahra Mosavi and Divine Ezeilo
 GitHub: @zahra-mos, Divine-Nelson
