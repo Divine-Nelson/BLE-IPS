@@ -46,19 +46,19 @@ The proposed indoor positioning framework consists of distributed BLE receivers,
 
 BLE Beacons -> RSSI Collection -> Signal Filtering -> Fingerprint Database -> KNN Localization -> Predicted Position
 
-1. Data Collection
+### 1. Data Collection
 Bluetooth Low Energy beacons continuously broadcast RSSI values while Raspberry Pi devices collect signal strength measurements at predefined locations.
 
-2. Signal Processing
+### 2. Signal Processing
 Three datasets are generated for comparison:
 * Raw RSSI
 * Median Filtered RSSI
 * Kalman Filtered RSSI
-3. Fingerprint Database
+### 3. Fingerprint Database
 Processed RSSI values are stored together with their known reference positions, creating a fingerprint database used for localization.
-4. Machine Learning
+### 4. Machine Learning
 The localization engine uses the K-Nearest Neighbours algorithm to estimate unknown positions by comparing new RSSI measurements against the fingerprint database.
-5. Evaluation
+### 5. Evaluation
 Localization accuracy is evaluated using:
 * Mean localization error
 * Standard deviation
