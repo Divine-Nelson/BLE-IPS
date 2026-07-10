@@ -41,7 +41,7 @@ By comparing different preprocessing methods, the project evaluates how signal f
 
 # System Architecture
 The proposed indoor positioning framework consists of distributed BLE receivers, a centralized data processing layer, and a machine learning localization engine.
-![System Architecture](image/system_architecture.png)
+![System Architecture](images/system_architecture.png)
 ## 📫 Contact
 Author: Zahra Mosavi and Divine Ezeilo
 GitHub: @zahra-mos, Divine-Nelson
