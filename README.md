@@ -41,7 +41,22 @@ By comparing different preprocessing methods, the project evaluates how signal f
 
 # System Architecture
 The proposed indoor positioning framework consists of distributed BLE receivers, a centralized data processing layer, and a machine learning localization engine.
-![System Architecture](image/system_architecture.png)
+
+![System Architecture](images/system_architecture.png)
+
+BLE Beacons -> RSSI Collection -> Signal Filtering -> Fingerprint Database -> KNN Localization -> Predicted Position
+
+### Raw RSSI
+Raw RSSI measurements fluctuate significantly due to environmental interference, human movement, and multipath propagation. Before localization, the signals are processed using Median and Kalman filtering to improve stability.
+
+![Raw RSSI](images/raw_rssi.png)
+### Median Filter Output
+
+![Median](images/median.png)
+### Kalman Filter Output
+![Kalman](images/kalman.png)
+
+
 ## 📫 Contact
 Author: Zahra Mosavi and Divine Ezeilo
 GitHub: @zahra-mos, Divine-Nelson
