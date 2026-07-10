@@ -44,7 +44,15 @@ The proposed indoor positioning framework consists of distributed BLE receivers,
 
 ![System Architecture](images/system_architecture.png)
 
-BLE Beacons -> RSSI Collection
+BLE Beacons -> RSSI Collection -> Signal Filtering -> Fingerprint Database -> KNN Localization -> Predicted Position
+
+### Raw RSSI
+Raw RSSI measurements fluctuate significantly due to environmental interference, human movement, and multipath propagation. Before localization, the signals are processed using Median and Kalman filtering to improve stability.
+
+![Raw RSSI](images/raw_rssi.png)
+![Median RSSI](images/median.png)
+![Kalman RSSI](images/kalman.png)
+
 
 ## 📫 Contact
 Author: Zahra Mosavi and Divine Ezeilo
