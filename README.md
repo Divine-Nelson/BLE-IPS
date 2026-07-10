@@ -44,22 +44,7 @@ The proposed indoor positioning framework consists of distributed BLE receivers,
 
 ![System Architecture](images/system_architecture.png)
 
-BLE Beacons
-      │
-      ▼
-RSSI Collection
-      │
-      ▼
-Signal Filtering
-      │
-      ▼
-Fingerprint Database
-      │
-      ▼
-KNN Localization
-      │
-      ▼
-Predicted Position
+BLE Beacons -> RSSI Collection
 
 ## 📫 Contact
 Author: Zahra Mosavi and Divine Ezeilo
