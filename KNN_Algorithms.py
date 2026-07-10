@@ -9,7 +9,7 @@ import time
 
 
 K= 3
-image_path = "./image/New_RPs.png"
+image_path = "./images/New_RPs.png"
 # Paths for test metadata CSVs
 TEST_METADATA_FILES = {
     "Raw": "CSV/test_raw.csv",
