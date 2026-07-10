@@ -46,6 +46,25 @@ The proposed indoor positioning framework consists of distributed BLE receivers,
 
 BLE Beacons -> RSSI Collection -> Signal Filtering -> Fingerprint Database -> KNN Localization -> Predicted Position
 
+1. Data Collection
+Bluetooth Low Energy beacons continuously broadcast RSSI values while Raspberry Pi devices collect signal strength measurements at predefined locations.
+
+2. Signal Processing
+Three datasets are generated for comparison:
+* Raw RSSI
+* Median Filtered RSSI
+* Kalman Filtered RSSI
+3. Fingerprint Database
+Processed RSSI values are stored together with their known reference positions, creating a fingerprint database used for localization.
+4. Machine Learning
+The localization engine uses the K-Nearest Neighbours algorithm to estimate unknown positions by comparing new RSSI measurements against the fingerprint database.
+5. Evaluation
+Localization accuracy is evaluated using:
+* Mean localization error
+* Standard deviation
+* Error distribution
+* Visual floorplan predictions
+
 ### Raw RSSI
 Raw RSSI measurements fluctuate significantly due to environmental interference, human movement, and multipath propagation. Before localization, the signals are processed using Median and Kalman filtering to improve stability.
 
@@ -55,6 +74,27 @@ Raw RSSI measurements fluctuate significantly due to environmental interference,
 ![Median](images/median.png)
 ### Kalman Filter Output
 ![Kalman](images/kalman.png)
+
+# Engineering Challenges
+### Challenge 1 — Noisy BLE Signals
+
+BLE RSSI measurements fluctuate naturally due to environmental interference.
+Solution
+Implemented Median and Kalman filtering techniques to reduce signal instability before localization.
+
+### Challenge 2 — Position Prediction Accuracy
+Raw RSSI values alone produced inconsistent predictions.
+
+Solution
+Compared multiple preprocessing pipelines to determine which approach produced the most reliable localization results.
+
+### Challenge 3 — Robustness
+Indoor environments constantly change due to moving people and obstacles.
+
+Solution
+Introduced simulated signal noise to evaluate how robust each localization model remained under degraded conditions.
+
+
 
 
 ## 📫 Contact
