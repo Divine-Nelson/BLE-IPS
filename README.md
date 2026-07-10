@@ -38,6 +38,10 @@ The localization pipeline consists of:
 * Predicted Indoor Position
 
 By comparing different preprocessing methods, the project evaluates how signal filtering influences localization accuracy.
+
+# System Architecture
+The proposed indoor positioning framework consists of distributed BLE receivers, a centralized data processing layer, and a machine learning localization engine.
+![System Architecture](images/system_architecture.png)
 ## 📫 Contact
 Author: Zahra Mosavi and Divine Ezeilo
 GitHub: @zahra-mos, Divine-Nelson
