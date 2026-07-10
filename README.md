@@ -2,6 +2,9 @@
 
 > A machine learning-based indoor positioning framework that improves indoor localization accuracy in GPS-denied healthcare environments using Bluetooth Low Energy (BLE), RSSI fingerprinting, signal processing, and K-Nearest Neighbours (KNN).
 
+![BLE Indoor Positioning Hero](images/hero.png)
+
+
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![BLE](https://img.shields.io/badge/Bluetooth-Low_Energy-0082FC?style=for-the-badge&logo=bluetooth)
 ![Machine Learning](https://img.shields.io/badge/Machine_Learning-orange?style=for-the-badge)
