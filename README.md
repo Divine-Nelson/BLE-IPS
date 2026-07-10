@@ -41,7 +41,26 @@ By comparing different preprocessing methods, the project evaluates how signal f
 
 # System Architecture
 The proposed indoor positioning framework consists of distributed BLE receivers, a centralized data processing layer, and a machine learning localization engine.
+
 ![System Architecture](images/system_architecture.png)
+
+BLE Beacons
+      │
+      ▼
+RSSI Collection
+      │
+      ▼
+Signal Filtering
+      │
+      ▼
+Fingerprint Database
+      │
+      ▼
+KNN Localization
+      │
+      ▼
+Predicted Position
+
 ## 📫 Contact
 Author: Zahra Mosavi and Divine Ezeilo
 GitHub: @zahra-mos, Divine-Nelson
