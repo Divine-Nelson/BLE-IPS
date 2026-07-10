@@ -50,8 +50,11 @@ BLE Beacons -> RSSI Collection -> Signal Filtering -> Fingerprint Database -> KN
 Raw RSSI measurements fluctuate significantly due to environmental interference, human movement, and multipath propagation. Before localization, the signals are processed using Median and Kalman filtering to improve stability.
 
 ![Raw RSSI](images/raw_rssi.png)
-![Median RSSI](images/median.png)
-![Kalman RSSI](images/kalman.png)
+### Median Filter Output
+
+![Median](images/median.png)
+### Kalman Filter Output
+![Kalman](images/kalman.png)
 
 
 ## 📫 Contact
