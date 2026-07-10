@@ -27,7 +27,17 @@ The challenge lies in the fact that BLE RSSI measurements fluctuate significantl
 These fluctuations reduce localization accuracy and make reliable positioning difficult.
 
 # 💡 The Solution
+This project combines BLE fingerprinting with signal filtering and machine learning to improve localization performance.
+Instead of using raw RSSI values directly, the system preprocesses signal data using different filtering techniques before training the localization model.
+The localization pipeline consists of:
+* BLE Beacons
+* RSSI Collection
+* Signal Preprocessing: Raw RSSI, Median Filter, Kalman Filter
+* Fingerprint Database
+* K-Nearest Neighbours (KNN)
+* Predicted Indoor Position
 
+By comparing different preprocessing methods, the project evaluates how signal filtering influences localization accuracy.
 ## 📫 Contact
 Author: Zahra Mosavi and Divine Ezeilo
 GitHub: @zahra-mos, Divine-Nelson
