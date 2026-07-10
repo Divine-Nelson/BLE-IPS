@@ -221,7 +221,7 @@ Kalman filtering achieved the lowest localization error across both K values, re
 
 ## Experiment 2
 
-![Experiment 2](images/results_2.png)
+![Experiment 2](images/result_2.png)
 
 The second experiment confirms that signal filtering consistently improves localization performance, with Kalman filtering providing the most stable and accurate predictions.
 
